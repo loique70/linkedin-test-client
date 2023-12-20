@@ -1,4 +1,3 @@
-// api/sectors.ts
 import axios from "axios";
 
 export const fetchSectors = async () => {
