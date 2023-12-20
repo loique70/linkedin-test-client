@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import SelectBox from "./SelectBox";
-import axios from "axios";
 import { fetchSectors, createUser, updateUser } from "../api/users";
 
 interface Sector {

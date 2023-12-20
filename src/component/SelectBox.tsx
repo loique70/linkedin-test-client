@@ -1,6 +1,5 @@
 // SelectBox.tsx
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { fetchSectors } from "../api/sectors";
 
 interface Sector {
