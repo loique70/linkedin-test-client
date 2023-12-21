@@ -38,28 +38,30 @@ const Form: React.FC = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    setNameError(false);
-    setSectorsError(false);
-    setTermsError(false);
-
     // Ensure selectedSectors contains only unique values
     const uniqueSectors = Array.from(new Set(selectedSectors));
 
     // Validate input data
+    let nameError = false;
+    let sectorsError = false;
+    let termsError = false;
+
     if (!name) {
-      setNameError(true);
+      nameError = true;
     }
     if (selectedSectors.length === 0) {
-      setSectorsError(true);
+      sectorsError = true;
     }
     if (!terms) {
-      setTermsError(true);
+      termsError = true;
     }
 
-    if (nameError || sectorsError || termsError) {
-      return;
-    }
-    // Create a new user
+    // Update error states
+    setNameError(nameError);
+    setSectorsError(sectorsError);
+    setTermsError(termsError);
+
+    // Only create a new user if there are no errors
     if (!nameError && !sectorsError && !termsError) {
       createUser({
         name,
@@ -92,6 +94,7 @@ const Form: React.FC = () => {
       setSelectedSectors(data.sectors);
       setTerms(data.terms);
       setIsEditing(false);
+      toast.success("Data updated successfully");
     });
   };
 
@@ -155,7 +158,7 @@ const Form: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex justify-between mt-4 space-x-4">
+          <div className="flex justify-between mt-6 space-x-4">
             <button
               className="inline-block rounded bg-blue-500 px-6 pb-2 pt-2.5 text-md 
               font-bold uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca]"
@@ -164,26 +167,27 @@ const Form: React.FC = () => {
             >
               Save
             </button>
-
-            {isEditing ? (
-              <button
-                onClick={handleUpdate}
-                className="inline-block rounded bg-blue-500 px-6 pb-2 pt-2.5 text-md 
-          font-bold uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca]"
-              >
-                Update
-              </button>
-            ) : (
-              <button
-                onClick={handleEdit}
-                className="inline-block rounded bg-blue-500 px-6 pb-2 pt-2.5 text-md 
-          font-bold uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca]"
-              >
-                Edit
-              </button>
-            )}
           </div>
         </form>
+        <div className="flex justify-end mt-4 space-x-4">
+          {isEditing ? (
+            <button
+              onClick={handleUpdate}
+              className="inline-block rounded bg-blue-500 px-6 pb-2 pt-2.5 text-md 
+      font-bold uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca]"
+            >
+              Update
+            </button>
+          ) : (
+            <button
+              onClick={handleEdit}
+              className="inline-block rounded bg-blue-500 px-6 pb-2 pt-2.5 text-md 
+      font-bold uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca]"
+            >
+              Edit
+            </button>
+          )}
+        </div>
       </div>
     </>
   );

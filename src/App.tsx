@@ -6,8 +6,8 @@ function App() {
   return (
     <>
       <div className=" m-8 p-4">
-        <h1 className="mb-4 text-3xl text-center font-medium leading-tight text-neutral-800">
-          Please inter your name and pick the Sectors you are curently involved
+        <h1 className="mb-4 text-center font-medium leading-tight text-neutral-800 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+          Please enter your name and pick the Sectors you are currently involved
           in
         </h1>
         <Form />
