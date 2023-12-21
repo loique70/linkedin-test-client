@@ -1,4 +1,6 @@
 import Form from "./component/Form";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -9,6 +11,7 @@ function App() {
           in
         </h1>
         <Form />
+        <ToastContainer />
       </div>
     </>
   );

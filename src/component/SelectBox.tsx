@@ -1,6 +1,7 @@
 // SelectBox.tsx
 import React, { useEffect, useState } from "react";
 import { fetchSectors } from "../api/sectors";
+import { toast } from "react-toastify";
 
 interface Sector {
   name: string;
@@ -23,7 +24,7 @@ const SelectBox: React.FC<SelectBoxProps> = ({ setSectors }) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     if (event.target.selectedOptions.length > 5) {
-      alert("Vous ne pouvez sélectionner que 5 options au maximum.");
+      toast.error("You could choose 5 options only.");
       event.target.selectedOptions[5].selected = false;
     }
     const selectedOptions = Array.from(
